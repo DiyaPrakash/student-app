@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Details</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="card">
+        <h1>Student Details</h1>
+        <div id="details">Loading...</div>
+    </div>
+    <script>
+        fetch('http://localhost:5000/student-details')
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('details').innerHTML = `
+                    <p><strong>Name:</strong> ${data.name}</p>
+                    <p><strong>Roll Number:</strong> ${data.roll_number}</p>
+                `;
+            })
+            .catch(err => {
+                document.getElementById('details').innerHTML = 'Failed to load data.';
+            });
+    </script>
+</body>
+</html>
